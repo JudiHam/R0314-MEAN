@@ -26,6 +26,7 @@ var data = fs.readFile('newfile2.txt',
   });
 
 //Append data from second file to first file
+//PROBLEM: file reading hasn't been completed yet
 fs.appendFile('newfile.txt', data, 
     function (err) {
         if (err) throw err;
