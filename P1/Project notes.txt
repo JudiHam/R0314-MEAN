@@ -1,51 +1,9 @@
-Directories:
-Project folder with folder including static html page files, .env, .gitignore and .js files directly
-in project folder.
+NEXT STEPS: 
 
-Form:
-Button is type button instead of submit => the backend js code handles submit operations instead
-of the browser. We write a js script in the form page html file that adds dynamic listeners to the 
-button with an anonymous function that saves form data into variables and takes the user to the next
-page after pressing submit.
-- the js script needs to go at the end of the html body, or it can be placed in the beginning with
-an onload function: window.onload = (event) => {
-    function contents here
-};
+- When the guestbook page's form is submitted, we need to save the data into 
+variables and save that into a json file for later use.
 
-AJAX:
-In the script we also need ajax in order to send the data to the server:
-Kun kenttien arvot on haettu, on aika luoda AJAX-pyyntö ja lähettää data edelleen palvelimelle. 
-AJAX-pyynnön palautuessa koodilla 200 (=OK) sen sisältö päivitetään aiemmin luotuun "status" 
--nimiseen div-lohkoon."
+uestbook so the user can see their new message displayed or redirect to guestbook page.
+- In the guestbook page, the updated json file is loaded and displayed nicely.
 
-Lähetettävä pyyntö määritellään POST-tyyppiseksi ja kohdeosoitteeksi "/kirjaudu".
-
-Huomionarvoista on myös se, miten data liitetään osaksi AJAX-pyyntöä. 
-Ensin määritellään setRequestHeader() -funktiolla että pyyntö sisältää lomakedataa. 
-Send() -funktiossa muuttujien nimet ja arvot välitetään avain-arvo -pareina ja 
-& -merkillä eroteltuna eteenpäin.
-
-Toinen vaihtoehto on koodata lomakkeen kentät JSON-olioksi ja lähettää ne sitten edelleen palvelimelle. 
-Mikäli data lähetetään JSON-muodossa, palvelimen Express-koodiin täytyy lisätä seraava rivi jotta 
-sen vastaanotto onnistuu:
-
-// Lomakkeen käsittelyä varten
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-AJAX pyynnön vastaanottaminen nodessa:
-
-Node-palvelimella AJAX pyynnön käsittely ei juuri eroa tavanomaisesta POST-tyyppisetä HTTP-pyynnöstä. 
-Muuttujien arvot saadaan esiin samaan tapaan kuin tavanomaisessakin pyynnössä. 
-
-// POST-tyyppiseen sivupyyntöön reagoiva reitti
-app.post("/kirjaudu", function(req, res) {
-  console.log(req.body);
-  var email = req.body.email;
-  var pass = req.body.pass;
-
-  res.send("Lähetit lomakkeen! Email: " + email + " Password: " + pass);
-});
-
-Palvelimen lähettämä vastaus välitetään AJAX-olion reponse-kentässä takaisin selaimelle. 
-Selaimessa JavaScript-koodi puolestaan asettaa sen näkyviin status-nimiseen div-lohkoon.
+DO I USE .ENV OR A JSON FILE TO SAVE THE GUESTBOOK DATA?
