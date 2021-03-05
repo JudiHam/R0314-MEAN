@@ -6,4 +6,3 @@ variables and save that into a json file for later use.
 uestbook so the user can see their new message displayed or redirect to guestbook page.
 - In the guestbook page, the updated json file is loaded and displayed nicely.
 
-DO I USE .ENV OR A JSON FILE TO SAVE THE GUESTBOOK DATA?

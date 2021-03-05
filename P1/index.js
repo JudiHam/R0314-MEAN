@@ -1,9 +1,12 @@
-//Create a web server with node and express
+var fs = require("fs");
+
 // Bring express
 var express = require("express");
 
 //Bring body-parser (helps handle form data we get with the POST request)
 var bodyParser = require("body-parser");
+
+const { json } = require("express");
 
 var app = express();
 
@@ -34,13 +37,35 @@ app.get("/ajaxmessage", function(req, res) {
     res.sendFile(__dirname + "\\ajaxmessage.html");
 });
 
-//A route called "sendform" that was declared in the html form 
-//and reacts to the POST-type request from the form in newmessage.html
-//Redirects the user to the guestbook page where they can see their new message
-//Maybe an alert that the message was saved would be good when redirecting? The new message will be on the bottom.
+//Read json file into variable
+var file = fs.readFile("sivut/messages.json", 
+  function (err, data) {
+    if (err) {
+      console.log(err);
+    }
+    //File empty in the beginning
+    console.log(data.toString());
+    }
+);
+
+//Next is a route called "sendform" that was declared in the newmessage.html form 
+//and reacts to the POST-type request from the form.
 app.post("/sendform", function(req, res) {
-    res.redirect("/guestbook.html");
-   });
+    console.log(req.body);
+    var username = req.body.username;
+    var country = req.body.country;
+    var message = req.body.message;
+    console.log(username + country + message);
+    //Create a new JS object
+    var newmsg = {
+        username: '"' + username + '"',
+        country: '"' + country + '"',
+        message: '"' + message + '"',
+    };
+    console.log("newmsg:" + newmsg);
+    //Push the object to the json file
+    file.push(newmsg);
+});
 
 app.listen(3000, function() {
     console.log("Example app listening on port 3000!");
