@@ -58,9 +58,9 @@ app.post("/sendform", function(req, res) {
     console.log(username + country + message);
     //Create a new JS object
     var newmsg = {
-        username: '"' + username + '"',
-        country: '"' + country + '"',
-        message: '"' + message + '"',
+        username: username,
+        country: country,
+        message: message,
     };
     console.log("newmsg:" + newmsg);
     //Push the object to the json file

@@ -1,8 +1,5 @@
-NEXT STEPS: 
 
-- When the guestbook page's form is submitted, we need to save the data into 
-variables and save that into a json file for later use.
+Next steps:
 
-uestbook so the user can see their new message displayed or redirect to guestbook page.
-- In the guestbook page, the updated json file is loaded and displayed nicely.
-
+Parse json and add to json file
+Bring json file data into table on guestbook page
