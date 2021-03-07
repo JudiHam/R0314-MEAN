@@ -1,5 +1,12 @@
 
 Next steps:
 
-Parse json and add to json file
-Bring json file data into table on guestbook page
+Sending message data to server and saving it in a file
+1. Parse json file to js format: json.parse(file), DONE
+2. Add form data to parsed json file with push function, DONE
+3. Convert this data back to json using json.stringify, DONE
+4. Append converted data to json file (without overwriting previously added data), DONE
+
+Bringing the file data to the browser and displaying it as a table
+5. read the json file
+6. Add table structure and function that builds table rows and columns, parsing json data
