@@ -16,10 +16,3 @@
           }); 
       </script>
 
-//
-function parseFormData() {
-  //if i>1 add "," in the beginning (separates json objects)
-  //Trying to parse form data into json with double quotes below
-  var newdata = ('{"username": ' + '"' + username + '"' + ', "country": ' + '"' + country + '"' + '", message": ' + '"' + message + '"}');
-  console.log(newdata.toString());
-}

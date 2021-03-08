@@ -8,5 +8,24 @@ Sending message data to server and saving it in a file
 4. Append converted data to json file (without overwriting previously added data), DONE
 
 Bringing the file data to the browser and displaying it as a table
-5. read the json file
-6. Add table structure and function that builds table rows and columns, parsing json data
+5. read the json file, done
+6. Add table structure and function that builds table rows and columns, parsing json data, done
+7. Add table to guestbook html somehow and display the html file as res response (res.sendfile)
+
+AJAX form
+1. /ajaxmessage should display similar form to the user. The only difference is, 
+that the Submit-button does not post the form, but rather it runs a Javascript-code on page
+which will collect the data from the text fields and send them to the backend as AJAX-call. 
+It will also return all the messages as a response to the page, under the form.
+
+You can use native Javascript or jQuery to implement the code.
+
+Front page content:
+1. Add text and maybe a picture, link to github repo?
+2. Introduce course project and tools used
+3. Add footer 
+
+TO BE FIXED: 
+- Routes not working if the url doesn't have .html, why?
+- Display guestbook route as guestbook.html content with the table added in it, 
+  make the table look better by linkin pure css to it
