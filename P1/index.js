@@ -23,6 +23,7 @@ var jsondata = JSON.parse(file);
 
 //Create routes
 //Routes not working if the url doesn't have .html, why?
+
 //1. Frontpage
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "\\index.html");
@@ -59,7 +60,7 @@ app.post("/sendform", function(req, res) {
 
 //3. Guestbook messages page
 app.get("/guestbook", function(req, res) {
-    //How do I add guestbook.html to the response with the table? Also in order to get pure css
+    //How do I add guestbook.html to the response with the table? Also in order to get pure css styling
     var table = '<table class="pure-table">' + '<th>' + "Username" + '</th>' + '<th>' + "Country" + '</th>' + '<th>' + "Message" + '</th>';
 
     for(var i=0; i<jsondata.length; i++) {
@@ -81,7 +82,7 @@ app.get("/newmessage", function(req, res) {
 
 //5. Route that reacts to ajaxmessage.html ajax request when the send-button is pushed
 app.post("/sendajaxform", function(req, res) { 
-    console.log(req.body);
+    
 });
 
 //6. New AJAX message form
