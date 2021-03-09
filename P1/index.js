@@ -88,7 +88,9 @@ app.post("/sendajaxform", function(req, res) {
     var username = req.body.username;
     var country = req.body.country;
     var message = req.body.message;
-    console.log(username + country + message);
+    console.log(username);
+    console.log(country);
+    console.log(message);
 });
 
 //6. New AJAX message form
