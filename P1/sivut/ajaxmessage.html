@@ -72,16 +72,10 @@
           //Send the POST-type AJAX request to /sendajaxform that is defined in the form
           xmlhttp.open("POST", "/sendajaxform", true);
           //Add form data to AJAX request
-          xmlhttp.setRequestHeader("Content-type", "application/json");
-          //Get the form data into data-variable
-          var data = {
-            username: username,
-            country: country,
-            message: message
-          };
+          xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           //Send the data variable to the server as string
-          console.log("Data: " + JSON.stringify(data));
-          xmlhttp.send(JSON.stringify(data));
+          console.log("Data: " + username + " " + country + " " + message);
+          xmlhttp.send(username + country + message);
         });
       };
       </script> 

@@ -3,13 +3,12 @@ var fs = require("fs");
 // Bring express
 var express = require("express");
 
-//Bring body-parser (helps handle form data we get with the POST request)
-var bodyParser = require("body-parser");
-
 var app = express();
 
-//Activate body-parser
+//Bring body-parser (helps handle form data we get with the POST request)
+var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //To serve static content from project directory
 app.use(express.static("./sivut"));
@@ -29,7 +28,12 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + "\\index.html");
 });
 
-//2. Next is a route called "sendform" that was declared in the newmessage.html form 
+//2. New message form
+app.get("/newmessage", function(req, res) {
+    res.sendFile(__dirname + "\\newmessage.html");
+});
+
+//3. Next is a route called "sendform" that was declared in the newmessage.html form 
 //and reacts to the POST-type request from the form when the send-button is pushed.
 app.post("/sendform", function(req, res) {
     //Save response elements as variables 
@@ -55,6 +59,7 @@ app.post("/sendform", function(req, res) {
     var data = JSON.stringify(jsondata, "", 1);
     //Add new data to json file
     fs.writeFileSync("sivut/messages.json", data);
+    //HOW TO SEND DATA TO GUESTBOOK.HTML?
     res.redirect("newmessage.html");
 });
 
@@ -75,14 +80,15 @@ app.get("/guestbook", function(req, res) {
     res.send(table);
 });
 
-//4. New message form
-app.get("/newmessage", function(req, res) {
-    res.sendFile(__dirname + "\\newmessage.html");
-});
-
 //5. Route that reacts to ajaxmessage.html ajax request when the send-button is pushed
 app.post("/sendajaxform", function(req, res) { 
-    
+    //Save form data that ajax has sent to same json file from before
+    console.log(req.body);
+    //These below aren't working
+    var username = req.body.username;
+    var country = req.body.country;
+    var message = req.body.message;
+    console.log(username + country + message);
 });
 
 //6. New AJAX message form
