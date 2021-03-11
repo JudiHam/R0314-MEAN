@@ -14,9 +14,24 @@
       <a class="pure-button" href="newmessage.html">New message</a>
       <a class="pure-button" href="guestbook.html">Guestbook</a>
       <a class="pure-button" href="ajaxmessage.html">Ajax message</a>
-      
       <script>
+      //How do I read the json data here?
+      var table = document.createElement("table");
       
+      table.id = "msgtable";
+        
+      table.innerHTML = '<table class="pure-table">' + '<th>' + "Username" + '</th>' + '<th>' + "Country" + '</th>' + '<th>' + "Message" + '</th>';
+
+      for(var i=0; i<jsondata.length; i++) {
+        table += 
+        '<tr>' + 
+        '<td>' + jsondata[i].username + '</td>' +
+        '<td>' + jsondata[i].country + '</td>' +
+        '<td>' + jsondata[i].message + '</td>' +
+        '<td>' + jsondata[i].date + '</td>'
+        '</tr>';
+      }
+      document.body.appendChild(table);
       </script> 
       
     </body>

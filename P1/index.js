@@ -59,17 +59,14 @@ app.post("/sendform", function(req, res) {
     var data = JSON.stringify(jsondata, "", 1);
     //Add new data to json file
     fs.writeFileSync("sivut/messages.json", data);
-    //HOW TO SEND DATA TO GUESTBOOK.HTML?
     res.redirect("newmessage.html");
 });
 
 //3. Guestbook messages page
 app.get("/guestbook", function(req, res) {
-    //How do I add guestbook.html to the response with the table? Also in order to get pure css styling
-    var table = '<table class="pure-table">' + '<th>' + "Username" + '</th>' + '<th>' + "Country" + '</th>' + '<th>' + "Message" + '</th>';
-
+    var taulukko = "";
     for(var i=0; i<jsondata.length; i++) {
-        table += 
+        taulukko += 
         '<tr>' + 
         '<td>' + jsondata[i].username + '</td>' +
         '<td>' + jsondata[i].country + '</td>' +
@@ -77,20 +74,52 @@ app.get("/guestbook", function(req, res) {
         '<td>' + jsondata[i].date + '</td>'
         '</tr>';
     }
-    res.send(table);
+    var html = 
+        `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8"/> 
+            <title>Guestbook</title>  
+            <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+        </head>
+        <body>
+            <h1>Guestbook App</h1>
+            <h2>Guestbook</h2>
+            <a class="pure-button" href="index.html">Home</a>
+            <a class="pure-button" href="newmessage.html">New message</a>
+            <a class="pure-button" href="/guestbook">Guestbook</a>
+            <a class="pure-button" href="ajaxmessage.html">Ajax message</a>        
+            <table class="pure-table pure-table-bordered"><thead><tr><th>Username</th><th>Country</th><th>Message</th><th>Date</th></tr></thead>
+            ${taulukko}`;
+    res.send(html);
 });
 
 //5. Route that reacts to ajaxmessage.html ajax request when the send-button is pushed
 app.post("/sendajaxform", function(req, res) { 
     //Save form data that ajax has sent to same json file from before
     console.log(req.body);
-    //These below aren't working
     var username = req.body.username;
     var country = req.body.country;
     var message = req.body.message;
-    console.log(username);
-    console.log(country);
-    console.log(message);
+    var date = new Date();
+    var d = date.toDateString();
+    console.log(username + country + message + d);
+    var newmsg = {
+        username: username,
+        country: country,
+        message: message,
+        date: d,
+    };
+    console.log("newmsg:" + newmsg);
+    //Push the object to the parsed json file
+    jsondata.push(newmsg);
+    //When sending data back to the server, the data has to be a string.
+    //Convert the jsondata JS object into a string with JSON.stringify() and add parameters to format it.
+    var data = JSON.stringify(jsondata, "", 1);
+    //Add new data to json file
+    fs.writeFileSync("sivut/messages.json", data);
+    //send json data as response to ajaxmesage.html
+    res.send(data);
 });
 
 //6. New AJAX message form

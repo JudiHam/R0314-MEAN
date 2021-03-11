@@ -7,11 +7,11 @@
     </head>
     <body>
       <h1>Guestbook App</h1>
-      <h2>New message</h2>
+      <h2>New AJAX message</h2>
 
       <a class="pure-button" href="index.html">Home</a>
       <a class="pure-button" href="newmessage.html">New message</a>
-      <a class="pure-button" href="guestbook.html">Guestbook</a>
+      <a class="pure-button" href="/guestbook">Guestbook</a>
       <a class="pure-button" href="ajaxmessage.html">Ajax message</a>
 
       <!-- Using the post -method to send data to the server, action defines the address where we send the post-request -->
@@ -66,7 +66,22 @@
             if (this.readyState == 4 && this.status == 200) {
             //Place the response in the "status" div
               document.getElementById("status").innerHTML = this.responseText;
-              console.log("response-text:" + this.responseText);
+              console.log("response-text:" + this.responseText);  
+            //Build table using node response, how to read json here?
+            var jsondata = JSON.parse(this.responseText);
+            var table = "";
+            table = '<table class="pure-table pure-table-bordered">' + '<thead>' + '<tr>' + '<th>' + "Username" + '</th>' + '<th>' + "Country" + '</th>' + '<th>' + "Message" + '</th>' + '<th>' + "Date" + '</th>' + '</tr>' + '</thead>';
+            for(var i=0; i<jsondata.length; i++) {
+              table += 
+              '<tr>' + 
+              '<td>' + jsondata[i].username + '</td>' +
+              '<td>' + jsondata[i].country + '</td>' +
+              '<td>' + jsondata[i].message + '</td>' +
+              '<td>' + jsondata[i].date + '</td>'
+              '</tr>';
+            }
+            console.log(table);
+            document.getElementById("status").innerHTML = table;
             }
           };
           //Send the POST-type AJAX request to /sendajaxform that is defined in the form
@@ -75,7 +90,7 @@
           xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           //Send the data variable to the server as string
           console.log("Data: " + username + " " + country + " " + message);
-          xmlhttp.send(username + country + message);
+          xmlhttp.send("username=" + username + "&country=" + country + "&message=" + message);
         });
       };
       </script> 
