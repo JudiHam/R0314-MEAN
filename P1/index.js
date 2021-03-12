@@ -81,16 +81,55 @@ app.get("/guestbook", function(req, res) {
             <meta charset="utf-8"/> 
             <title>Guestbook</title>  
             <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
-        </head>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet"> 
+    <style>
+      .content {
+          margin: auto;
+          width: 30%;
+      } 
+      h1 {
+          font-family: 'Bad Script', cursive;
+          margin: 35px 0;
+      }
+      form {
+        margin: 20px 0;
+      }
+      table {
+          margin: 20px auto;
+      }
+      .pure-button {
+          background-color: #befff8c2;
+          margin: 2px auto;
+          font-family: 'Bad Script', cursive;
+      }
+      th {
+          background-color: #bbbbbbdb;
+          color: white;
+          font-family: 'Bad Script', cursive;
+      }
+      #btn1 {
+        margin-top: 20px;
+      }
+      p, label, input, h2, table {
+        font-family: 'Nunito Sans', sans-serif;
+      }
+    </style>
+  </head>
         <body>
+        <div class="content">
             <h1>Guestbook App</h1>
-            <h2>Guestbook</h2>
+            <p>Guestbook</p>
             <a class="pure-button" href="index.html">Home</a>
             <a class="pure-button" href="newmessage.html">New message</a>
             <a class="pure-button" href="/guestbook">Guestbook</a>
             <a class="pure-button" href="ajaxmessage.html">Ajax message</a>        
             <table class="pure-table pure-table-bordered"><thead><tr><th>Username</th><th>Country</th><th>Message</th><th>Date</th></tr></thead>
-            ${taulukko}`;
+            ${taulukko}
+        </div>`;
     res.send(html);
 });
 

@@ -1,20 +1,14 @@
 [
  {
-  "username": "Judith",
+  "username": "Judith da Silva",
   "country": "Finland",
   "message": "Hi!",
   "date": "Mon Mar 08 2021"
  },
  {
-  "username": "",
-  "country": "",
-  "message": "",
-  "date": "Thu Mar 11 2021"
- },
- {
-  "username": "",
-  "country": "",
-  "message": "",
-  "date": "Thu Mar 11 2021"
+  "username": "Mr Boombastic",
+  "country": "Hawaii",
+  "message": "My french fries are almost ready :)",
+  "date": "Fri Mar 12 2021"
  }
 ]
