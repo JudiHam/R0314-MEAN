@@ -1,3 +1,5 @@
+const PORT = process.env.PORT || 5000;
+
 var fs = require("fs");
 
 // Bring express
@@ -166,7 +168,7 @@ app.get("/ajaxmessage", function(req, res) {
     res.sendFile(__dirname + "\\ajaxmessage.html");
 });
 
-app.listen(3000, function() {
+app.listen(PORT, function() {
     console.log("Example app listening on port 3000!");
 });
 
