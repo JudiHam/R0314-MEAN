@@ -4,19 +4,25 @@
     <%- include ("../partials/head") %>
 </head>
 
-<body class="container">
+<body>
 
     <header>
         <%- include ("../partials/header") %>
     </header>
     
-    <table>
-        <tr><th>Title</th><th>Year</th><th>Poster</th></tr>
-        <% for (var i=0; i < jsondata.length; i++){ %>
+    <table  class="pure-table">
+        <thead>
             <tr>
-                <td><%= jsondata[i].Title %></td>
-                <td><%= jsondata[i].Year %></td>
-                <td><img src='" <%= jsondata[i].poster %> "'></td>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <% for (var i=0; i < favorites.length; i++){ %>
+            <tr>
+                <td><img src='"<%= favorites[i].poster %>"'></td>
+                <td><%= favorites[i].Title %></td>
+                <td><%= favorites[i].Year %></td>
             </tr>          
         <% } %>    
     </table>
